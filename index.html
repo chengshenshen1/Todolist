@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>待办事项列表</title>
+	<link rel="stylesheet" type="text/css" href="css/todo_mvc.css">
+</head>
+<body>
+	<section class="todo_app">
+		<header class="site_head">
+			<input class="new_todo" v-model="newTodo" v-on:keyup.enter="addTodo" placeholder="What needs to be done?">
+		</header>
+		<section class="site_main" v-show="todoList.length" v-cloak>
+			<input type="checkbox" class="toggle_all" v-model="toggleAllChecked" v-bind:class="{checked_all : remaining === 0} "/>
+			<ul class="todo_list">
+				<li class="todo_item" v-for="(todo,index) in filterTodoList" v-bind:class="{completed : todo.completed,editing: todo.editing}">
+				<div class="view">
+					<input type="checkbox" class="toggle" v-model="todo.completed" />
+					<label class="todo_label" v-on:dblclick="editTodo(todo)">{{todo.label}}</label>
+					<button class="destroy" v-on:click="removeTodo(index)"></button>
+				</div>
+				<input class="edit" type="text"	v-model="todo.label" v-auto-focus="todo.editing"	v-on:blur="finishEdit(todo,index)"	v-on:keyup.enter="finishEdit(todo,index)"	v-on:keyup.esc="cancelEdit(todo)" />
+			</li>
+		</ul>
+	</section>
+	<footer class="site_foot" v-show="todoList.length" v-cloak>
+		<span class="num_items">{{remaining}}  {{remaining|pluralize}}  left</span>
+		<div class="statue_wrapper">
+			<a class="status status_all" href="#/all" v-bind:class="{selected : visibility == 'all'}">All</a>
+			<a class="status status_active" href="#/active" v-bind:class="{selected : visibility == 'active'}">Active</a>
+			<a class="status status_completed" href="#/completed" v-bind:class="{selected : visibility == 'completed'}">Completed</a>
+		</div>
+		<a class="clear_completed" v-on:click="removeCompleted"
+		v-show="todoList.length > remaining" href="##">Clear completed</a>
+	</footer>
+</section> 
+<script src="http://cdn.bootcss.com/vue/2.1.3/vue.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+* ,*:before ,*:after {
+	box-sizing: border-box;
+}
+body {
+	
+	font: 14px 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+	background-color: #f5f5f5;
+    color: #4d4d4d;
+    height: 100%;
+	width: 100%;
+}
+
+@font-face {
+  font-family: 'iconfont';  /* project id 183066 */
+  src: url('https://at.alicdn.com/t/font_nxzzdmsyf7qlg14i.eot');
+  src: url('https://at.alicdn.com/t/font_nxzzdmsyf7qlg14i.eot?#iefix') format('embedded-opentype'),
+  url('https://at.alicdn.com/t/font_nxzzdmsyf7qlg14i.woff') format('woff'),
+  url('https://at.alicdn.com/t/font_nxzzdmsyf7qlg14i.ttf') format('truetype'),
+  url('https://at.alicdn.com/t/font_nxzzdmsyf7qlg14i.svg#iconfont') format('svg');
+}
+
+[v-cloak]{
+	display: none;
+}
+
+button, input[type="checkbox"] {
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.todo_app {
+	width: 40%;
+	height: 40%;
+	margin:100px auto;
+	background-color: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+.todo_app input::-webkit-input-placeholder {
+	font-style: italic;
+	font-weight: 300;
+	color: #e6e6e6;
+}
+
+.new_todo {
+	font-size: 24px;
+    padding: 16px 190px 16px 60px;
+    border: 0;
+    outline: 0;
+    background: rgba(0, 0, 0, 0.003);
+    box-shadow: inset 0 -2px 1px rgba(0,0,0,0.08);
+}
+
+.site_main {
+	position: relative;
+	z-index: 2;
+	border-top: 1px solid #e6e6e6;
+}
+
+.toggle_all {
+    position: absolute;
+    top: -53px;
+    left: 0px;
+    width: 60px;
+    height: 34px;
+    text-align: center;
+    border: none;
+    transform: rotateZ(90deg);
+}
+.toggle_all:before {
+	content:'❯';
+	font-size: 30px;
+    color: rgb(230, 230, 230);
+    padding: 10px 27px;
+}
+
+.checked_all:before {
+    color: #000;
+}
+
+.todo_list {
+	list-style: none;
+}
+
+.todo_item {
+	position: relative;
+    border-bottom: 1px solid #ededed;
+}
+
+.destroy {
+	/*display: none;*/
+	position: absolute;
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
+    color: #cc9a9a;
+    border: 0;
+    background-color: white;
+    top:0;
+    bottom: 0;
+    margin:auto 0;
+
+}
+.destroy:after {
+	content:'×';
+}
+
+.destroy:hover {
+	color: #af5b5e;
+    /*display: block;*/
+}
+
+.site_foot {
+	text-align: center;
+	position: relative;
+    padding: 20px 10px 30px 10px;
+}
+
+.site_foot:before{
+	content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 20px;
+    overflow: hidden;
+    box-shadow:  0 1px 1px rgba(0, 0, 0, 0.2),
+    			 0 8px 0 -3px #f6f6f6, 
+    			 0 9px 1px -3px rgba(0, 0, 0, 0.2), 
+    			 0 16px 0 -6px #f6f6f6, 
+    			 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+}
+
+.num_items {
+	float: left;
+}
+
+.clear_completed {
+	float: right;
+	text-decoration: none;
+	color: #4d4d4d;
+}
+.clear_completed:hover {
+    text-decoration: underline;
+}
+.statue_wrapper {
+    position: absolute;
+    width: 50%;
+    transform: translateX(50%);
+}
+.status {
+	padding: 5px 10px;
+	text-decoration: none;
+	border-radius: 4px;
+	border: 1px solid transparent;
+	color: #4d4d4d;
+}
+
+.status.selected {
+    border-color: rgba(175, 47, 47, 0.4);
+}
+
+.status:hover {
+	border-color: rgba(175, 47, 47, 0.2);
+}
+
+.view {
+    width: 100%;
+}
+
+.editing .view {
+    display: none;
+}
+.toggle {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    margin:auto 0;
+    left: 10px;
+}
+.toggle:after {
+    content:'\e63c';
+    font-family: 'iconfont';
+    font-size: 40px;
+    margin-top: 4px;
+}
+.toggle:checked:after {
+    content:'\e669';
+    font-family: 'iconfont';
+    font-size: 40px;
+}
+.todo_label {
+    font-size: 24px;
+    padding: 20px;
+    margin-left: 45px;
+    width: 80%;
+    display: inline-block;
+}
+
+.completed .todo_label {
+    text-decoration: line-through;
+    color: #D9D9D9;
+}
+
+.edit {
+    display: none;
+    padding: 18px;
+    position: relative;
+    font-size: 24px;
+    top: 0;
+    right: 0;
+    width: 92%;
+    margin-left: 45px;
+}
+.editing .edit {
+    display: block;
+}
